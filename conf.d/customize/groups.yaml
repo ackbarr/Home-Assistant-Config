@@ -1,0 +1,54 @@
+group.all_automations:
+  friendly_name: 'All Automations'
+  emulated_hue: False
+  hidden: True
+  homebridge_hidden: true
+
+
+group.all_covers:
+  friendly_name: 'All Covers'
+  emulated_hue: False
+  hidden: True
+  homebridge_hidden: true
+
+
+group.all_devices:
+  friendly_name: 'All Devices'
+  emulated_hue: False
+  hidden: True
+  homebridge_hidden: true
+
+
+group.all_lights:
+  friendly_name: 'All Lights'
+  emulated_hue: True
+  hidden: True
+
+group.all_scripts:
+  friendly_name: 'All Scripts'
+  emulated_hue: False
+  hidden: True
+  homebridge_hidden: true
+
+group.all_switches:
+  friendly_name: 'All Switches'
+  emulated_hue: True
+  hidden: True
+
+group.family:
+  friendly_name: 'Family'
+  emulated_hue: False
+  hidden: False
+  homebridge_hidden: true
+
+group.media_players:
+  friendly_name: 'Media Players'
+  emulated_hue: False
+  hidden: False
+  homebridge_hidden: true
+
+group.network:
+  friendly_name: 'Network'
+  emulated_hue: False
+  hidden: False
+  homebridge_hidden: true
