@@ -1,0 +1,27 @@
+people:
+  name: People
+  icon: mdi:account-multiple
+  view: true
+  entities:
+  - group.brian
+  - group.shanon
+  - group.dylan
+
+shanon:
+  entities:
+  - device_tracker.shanon_lgphone
+  - device_tracker.android41c7df981bd9a646
+  name: Shanon
+  view: false
+brian:
+  entities:
+  - device_tracker.brian_lg_v20
+  - device_tracker.androidbef909bd6145549e
+  name: Brian
+  view: false
+dylan:
+  entities:
+  - device_tracker.dylan_lg_phonedylan
+  - device_tracker.android4a4e3a7fdff884ea
+  name: Dylan
+  view: false

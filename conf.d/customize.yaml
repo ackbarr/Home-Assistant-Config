@@ -1,0 +1,10 @@
+sensor.media02_online:
+  icon: mdi:network
+sensor.media03_online:
+  icon: mdi:network
+sensor.nextpvr_online:
+  icon: mdi:network
+sensor.sab_disk_free:
+  icon: mdi:harddisk
+sensor.sab_speed:
+  icon: mdi:speedometer

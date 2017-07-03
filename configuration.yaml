@@ -1,0 +1,123 @@
+homeassistant:
+  name: Home
+  latitude:  !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: !secret elevation_home
+  unit_system: imperial
+  time_zone: America/Chicago
+  temperature_unit: F
+  customize: !include conf.d/customize.yaml
+
+http:
+  api_password: !secret http_password
+  trusted_networks:
+  - 10.0.0.0/24
+  - 127.0.0.1
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+frontend:
+
+config:
+
+logger:
+  default: warn
+  
+updater:
+  include_used_components: true
+
+discovery:
+
+conversation:
+
+history:
+
+logbook:
+
+sun:
+
+tts:
+  platform: google
+
+ecobee:
+  api_key: !secret ecobee_key
+
+ifttt:
+  key: !secret ifttt_key
+
+mqtt:
+  broker: !secret mqtt_server
+  port: 8883
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+  certificate: auto
+
+emulated_hue:
+  type: alexa
+
+python_script:
+
+zone:
+  name: !secret zone_school1_name
+  latitude: !secret zone_school1_latitude
+  longitude: !secret zone_school1_longitude
+  radius: 100
+  icon: mdi:school
+
+zone 2:
+  name: !secret zone_work1_name
+  latitude: !secret zone_work1_latitude
+  longitude: !secret zone_work1_longitude
+  radius: 80
+  icon: mdi:desktop-classic
+  
+# This will override the default home zone
+zone 3:
+  name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  radius: 25
+  icon: mdi:account-multiple
+  
+zone 4:
+  name: !secret zone_special1_name
+  latitude: !secret zone_special1_latitude
+  longitude: !secret zone_special1_longitude
+  radius: 125
+  icon: mdi:church
+
+zone 5:
+  name: !secret zone_special2_name
+  latitude: !secret zone_special2_latitude
+  longitude: !secret zone_special2_longitude
+  radius: 25
+  icon: mdi:home-variant
+
+zone 6:
+  name: !secret zone_special3_name
+  latitude: !secret zone_special3_latitude
+  longitude: !secret zone_special3_longitude
+  radius: 25
+  icon: mdi:home-variant
+  
+zone 7:
+  name: !secret zone_special4_name
+  latitude: !secret zone_special4_latitude
+  longitude: !secret zone_special4_longitude
+  radius: 25
+  icon: mdi:home-variant
+
+light: !include_dir_list conf.d/lights/
+weather: !include_dir_list conf.d/weather/
+media_player: !include_dir_list conf.d/media_players/
+device_tracker: !include_dir_list conf.d/device_trackers/
+notify: !include_dir_list conf.d/notifications/ 
+sensor: !include_dir_list conf.d/sensors/
+binary_sensor: !include_dir_list conf.d/binary_sensors/
+alert: !include_dir_named conf.d/alerts/
+
+alexa: !include conf.d/alexa.yaml
+group: !include_dir_merge_named conf.d/groups/
+automation: !include_dir_merge_named conf.d/automations/
+
+

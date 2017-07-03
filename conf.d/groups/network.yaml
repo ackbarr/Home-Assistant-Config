@@ -1,0 +1,15 @@
+Network:
+  entities:
+  - sensor.media02_online
+  - sensor.media03_online
+  - sensor.nextpvr_online
+sabnzb:
+  entities:
+  - sensor.sab_status
+  - sensor.sab_speed
+  - sensor.sab_disk_free
+  - sensor.sab_queue
+  - sensor.sab_left
+  - sensor.sonarr_upcoming
+  name: SabNZB+
+  view: false

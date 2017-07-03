@@ -1,0 +1,7 @@
+platform: nmap_tracker
+hosts: 10.0.0.1/24
+home_interval: 10
+track_new_devices: false
+consider_home: 180
+exclude:
+  10.0.0.131

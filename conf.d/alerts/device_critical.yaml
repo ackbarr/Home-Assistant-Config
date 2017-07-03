@@ -1,0 +1,8 @@
+name: A device is critical
+entity_id: sensor.device_critical
+state: 'on'
+repeat: 10
+can_acknowledge: True
+skip_first: True
+notifiers:
+  - slack

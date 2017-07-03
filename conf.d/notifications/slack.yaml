@@ -1,0 +1,6 @@
+name: slack
+platform: slack
+api_key: !secret slack_key
+default_channel: '#media-center-btw'
+username: 'Home Assistant'
+icon: ':hass:'

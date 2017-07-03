@@ -1,0 +1,48 @@
+- id: ext_lights_on_night
+  alias: Turn on lights at dusk
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation}}'
+    below: -2.5
+  action:
+    - service: light.turn_on
+      entity_id: group.driveway_lights
+    - service: notify.slack
+      data:
+        message: 'Turning on driveway lights'   
+- id: ext_lights_off_night
+  alias: Turn off lights at dawn
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation}}'
+    above: 1.5
+  action:
+    - service: light.turn_off
+      entity_id: group.driveway_lights
+    - service: notify.slack
+      data:
+        message: 'Turning off driveway lights'
+- id: rainy_day_on
+  alias: 'Rainy Day'
+  trigger:
+    - platform: state
+      entity_id: sensor.precip_intensity
+      to: 'rain'
+  action:
+    service: light.turn_on
+    entity_id: group.driveway_lights
+- id: rainy_day_off
+  alias: 'Rain is over'
+  trigger:
+    - platform: state
+      entity_id: sensor.precip_intensity
+      to: 'None'
+  condition:
+    - condition: sun
+      after: 'sunset'
+      after_offset: '-01:00:00'
+  action:
+    service: light.turn_off
+    entity_id: group.driveway_lights

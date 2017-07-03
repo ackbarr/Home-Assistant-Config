@@ -1,0 +1,15 @@
+lights:
+  name: Lights
+  icon: mdi:lightbulb
+  view: true
+  entities:
+  - group.driveway_lights
+  - configurator.philips_hue
+  
+driveway_lights:
+  entities:
+  - light.hue_color_lamp_1
+  - light.hue_color_lamp_2
+  - light.hue_color_lamp_3
+  name: Driveway Lights
+  view: false

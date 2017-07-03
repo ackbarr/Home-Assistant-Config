@@ -1,0 +1,5 @@
+platform: template
+sensors:
+  device_critical:
+    value_template: '{{ states.media02_online == "Offline" or states.media03_online == "Offline" or states.nextpvr_online == "Offline" }}'
+    friendly_name: 'Device Critical'

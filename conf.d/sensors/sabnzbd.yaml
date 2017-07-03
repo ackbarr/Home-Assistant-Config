@@ -1,0 +1,10 @@
+platform: sabnzbd
+host: !secret sabnzbd_host
+api_key: !secret sabnzbd_key
+name: "SAB"
+monitored_variables:
+  - 'current_status'
+  - 'speed'
+  - 'queue_size'
+  - 'queue_remaining'
+  - 'disk_free'

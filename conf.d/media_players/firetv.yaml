@@ -1,0 +1,5 @@
+platform: firetv
+host: localhost
+port: 5556
+device: default
+name: Living Room FireTV

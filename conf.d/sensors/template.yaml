@@ -1,0 +1,37 @@
+platform: template
+sensors:
+  media02_online:
+    value_template: "{% if states.device_tracker.media02 %}
+      {% if is_state('device_tracker.media02', 'home') %}
+        Online
+      {% else %}
+        Offline
+      {% endif %}
+      {% else %}
+        Unknown
+      {% endif %}"
+    friendly_name: 'Drobo - Media02'
+
+  media03_online:
+    value_template: "{% if states.device_tracker.media03 %}
+      {% if is_state('device_tracker.media03', 'home') %}
+        Online
+      {% else %}
+        Offline
+      {% endif %}
+      {% else %}
+        Unknown
+      {% endif %}"
+    friendly_name: 'Drobo - Media03'
+
+  nextpvr_online:
+    value_template: "{% if states.device_tracker.nextpvr %}
+      {% if is_state('device_tracker.nextpvr', 'home') %}
+        Online
+      {% else %}
+        Offline
+      {% endif %}
+      {% else %}
+        Unknown
+      {% endif %}"
+    friendly_name: 'NextPVR'

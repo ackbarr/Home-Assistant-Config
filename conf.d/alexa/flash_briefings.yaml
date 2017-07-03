@@ -1,0 +1,10 @@
+whoishome:
+  - title: Who's at home?
+    text: >
+      {%- if is_state('device_tracker.brian_lg_v20', 'home') and
+              is_state('device_tracker.shanon_lgphone', 'home') -%}
+          You are both home, you silly
+      {%- else -%}
+        Brian is at {{ states("device_tracker.brian_lg_v20") }}
+        and Shanon is at {{ states("device_tracker.shanon_lgphone") }}
+      {% endif %}

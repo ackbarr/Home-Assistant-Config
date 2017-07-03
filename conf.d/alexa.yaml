@@ -1,0 +1,56 @@
+intents:
+    WhereAreWeIntent:
+      speech:
+        type: plaintext
+        text: >
+          {%- if is_state('device_tracker.brian_lg_v20', 'home') and
+                 is_state('device_tracker.shanon_lgphone', 'home') -%}
+            You are all at home, you silly
+          {%- else -%}
+            Shanon is at {{ states("device_tracker.shanon_lgphone") }}
+            Dylan is at {{ states("device_tracker.dylan_lg_phonedylan") }}
+            and Brian is at {{ states("device_tracker.brian_lg_v20") }}
+          {% endif %}
+    LocateIntent:
+      action:
+        service: notify.slack
+        data_template:
+          message: The location of {{ User }} has been queried via Alexa.
+      speech:
+        type: plaintext
+        text: >
+          
+          {%- if User.lower() in ['mommy','mom','momma','shannon'] -%}
+            {%- set searchUser = 'Shanon' -%}
+          {%- elif User.lower() in ['daddy','dad','ackbarr','brain']  -%}
+            {%- set searchUser = 'Brian' -%}
+          {%- else %}
+            {%- set searchUser = User -%}
+          {%- endif %}
+          {%- for state in states.device_tracker -%}
+            {%- if state.name.lower() == searchUser.lower() -%}
+              {{ User }} is at {{ state.state }}
+              {%- set match = true -%}
+            {%- elif loop.last and not match -%}
+              I am sorry, I do not know where {{ User }} is.
+            {%- endif -%}
+          {%- endfor -%}
+    ActivateSceneIntent:
+      action:
+        service: scene.turn_on
+        data_template:
+          entity_id: scene.{{ Scene | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: OK    
+flash_briefings:
+  whoishome:
+    - title: Who's at home?
+      text: >
+        {%- if is_state('device_tracker.brian_lg_v20', 'home') and
+                is_state('device_tracker.shanon_lgphone', 'home') -%}
+            You are both home, you silly
+        {%- else -%}
+          Brian is at {{ states("device_tracker.brian_lg_v20") }}
+          and Shanon is at {{ states("device_tracker.shanon_lgphone") }}
+        {% endif %}
