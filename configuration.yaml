@@ -118,6 +118,6 @@ alert: !include_dir_named conf.d/alerts/
 
 alexa: !include conf.d/alexa.yaml
 group: !include_dir_merge_named conf.d/groups/
-automation: !include_dir_merge_named conf.d/automations/
+automation: !include_dir_merge_list conf.d/automations/
 
 
