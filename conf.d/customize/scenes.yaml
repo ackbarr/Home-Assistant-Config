@@ -3,9 +3,6 @@ scene.all_off:
   emulated_hue: False
   hidden: False
 
-
-
-
 scene.front_full_brightness:
   friendly_name: 'Front Full Brightness'
   emulated_hue: True

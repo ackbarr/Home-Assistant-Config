@@ -1,4 +1,5 @@
 intents:
+    # where we are
     WhereAreWeIntent:
       speech:
         type: plaintext
@@ -11,6 +12,11 @@ intents:
             Dylan is at {{ states("device_tracker.dylan_lg_phonedylan") }}
             and Brian is at {{ states("device_tracker.brian_lg_v20") }}
           {% endif %}
+
+    # Where is {User}
+    # Where's {User}
+    # Where {User} is
+    # Where did {User} go
     LocateIntent:
       action:
         service: notify.slack
@@ -35,6 +41,8 @@ intents:
               I am sorry, I do not know where {{ User }} is.
             {%- endif -%}
           {%- endfor -%}
+    
+    # activate {Scene}
     ActivateSceneIntent:
       action:
         service: scene.turn_on

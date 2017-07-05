@@ -4,13 +4,13 @@
     platform: numeric_state
     entity_id: sun.sun
     value_template: '{{ state.attributes.elevation}}'
-    below: -2.5
+    below: -0.1
   action:
     - service: light.turn_on
       entity_id: group.driveway_lights
     - service: notify.slack
       data:
-        message: 'Turning on driveway lights'   
+        message: "It's Sundown: Turning on driveway lights"
 - id: ext_lights_off_night
   alias: Turn off lights at dawn
   trigger:
@@ -23,7 +23,7 @@
       entity_id: group.driveway_lights
     - service: notify.slack
       data:
-        message: 'Turning off driveway lights'
+        message: "It's Sunrise: Turning off driveway lights"
 - id: rainy_day_on
   alias: 'Rainy Day'
   trigger:
@@ -31,8 +31,11 @@
       entity_id: sensor.precip_intensity
       to: 'rain'
   action:
-    service: light.turn_on
-    entity_id: group.driveway_lights
+    - service: light.turn_on
+      entity_id: group.driveway_lights
+    - service: notify.slack
+      data:
+        message: "Rain, Rain, Go Away, come again some other day"
 - id: rainy_day_off
   alias: 'Rain is over'
   trigger:
@@ -46,3 +49,16 @@
   action:
     service: light.turn_off
     entity_id: group.driveway_lights
+- id: july4th
+  alias: 'Independance Day'
+  trigger:
+    - platform: time
+      hours: 12
+      minutes: 38
+      seconds: 0
+  condition:
+    condition: template
+    value_template: '{{ now().date() == "2017-07-04" }}'
+  action:
+    service: scene.turn_on
+    entity_id: scene.month_independance_day_colors
