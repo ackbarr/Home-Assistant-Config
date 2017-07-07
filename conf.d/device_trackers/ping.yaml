@@ -1,5 +1,5 @@
 platform: ping
 hosts:
-  media02: 10.0.0.115
-  media03: 10.0.0.134
-  nextpvr: 10.0.0.108
+  media02: !secret media02_host
+  media03: !secret media03_host
+  nextpvr: !secret nextpvr_host
