@@ -1,0 +1,2 @@
+platform: statistics
+entity_id: sensor.main_floor_temperature

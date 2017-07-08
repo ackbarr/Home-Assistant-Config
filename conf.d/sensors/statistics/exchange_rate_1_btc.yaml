@@ -1,0 +1,2 @@
+platform: statistics
+entity_id: sensor.exchange_rate_1_btc
