@@ -2,6 +2,7 @@ platform: nmap_tracker
 hosts: 10.0.0.1/24
 home_interval: 10
 track_new_devices: false
-consider_home: 180
+consider_home: 0:05:00
+interval_seconds: 30
 exclude:
   10.0.0.131
