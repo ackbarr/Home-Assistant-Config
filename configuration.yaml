@@ -14,6 +14,17 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 3
 
+nest:
+  client_id: !secret nest_product_id
+  client_secret: !secret nest_product_secret
+  structure:
+    - Home
+  sensors:
+    monitored_conditions:
+      - co_status
+      - smoke_status
+      - batter_health
+
 frontend:
 
 config:
