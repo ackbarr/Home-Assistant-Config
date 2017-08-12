@@ -35,3 +35,15 @@ sensors:
         Unknown
       {% endif %}"
     friendly_name: 'NextPVR'
+
+  lightbridge_online:
+    value_template: "{% if states.device_tracker.philipshue %}
+      {% if is_state('device_tracker.philipshue', 'home') %}
+        Online
+      {% else %}
+        Offline
+      {% endif %}
+      {% else %}
+        Unknown
+      {% endif %}"
+    friendly_name: 'Philips Hue Hub'

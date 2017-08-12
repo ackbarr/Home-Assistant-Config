@@ -3,6 +3,7 @@ Network:
   - sensor.media02_online
   - sensor.media03_online
   - sensor.nextpvr_online
+  - sensor.lightbridge_online
 sabnzb:
   entities:
   - sensor.sab_status
