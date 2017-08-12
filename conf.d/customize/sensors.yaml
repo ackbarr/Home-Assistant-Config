@@ -8,3 +8,5 @@ sensor.sab_disk_free:
   icon: mdi:harddisk
 sensor.sab_speed:
   icon: mdi:speedometer
+sensor.lightbridge_online:
+  icon: mdi:lightbulb
