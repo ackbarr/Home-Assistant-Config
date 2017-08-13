@@ -116,6 +116,8 @@ zone 7:
   radius: 25
   icon: mdi:home-variant
 
+zwave: !include conf.d/zwave.yaml
+
 light: !include_dir_list conf.d/lights/
 weather: !include_dir_list conf.d/weather/
 media_player: !include_dir_list conf.d/media_players/
