@@ -49,5 +49,5 @@ sensors:
     friendly_name: 'Philips Hue Hub'
 
   washing_machine_switch_current_amps:
-    value_template: '{{ states.switch.washing_machine.attributes.Current }}'
+    value_template: '{{ states.switch.washing_machine.attributes.Current|replace(" A", "") }}'
     friendly_name: 'Washing Machine Current Amps'
