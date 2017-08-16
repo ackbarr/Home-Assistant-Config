@@ -34,7 +34,7 @@
   alias: 'Rainy Day'
   trigger:
     - platform: state
-      entity_id: sensor.precip_intensity
+      entity_id: sensor.dark_sky_precip
       to: 'rain'
   action:
     - service: light.turn_on
@@ -46,7 +46,7 @@
   alias: 'Rain is over'
   trigger:
     - platform: state
-      entity_id: sensor.precip_intensity
+      entity_id: sensor.dark_sky_precip
       to: 'None'
   condition:
     - condition: sun
