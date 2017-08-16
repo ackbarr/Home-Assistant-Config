@@ -47,3 +47,7 @@ sensors:
         Unknown
       {% endif %}"
     friendly_name: 'Philips Hue Hub'
+
+  washing_machine_switch_current_amps:
+    value_template: '{{ switch.washing_machine.attributes.current }}'
+    friendly_name: 'Washing Machine Current Amps'

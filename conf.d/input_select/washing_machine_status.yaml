@@ -1,0 +1,7 @@
+name: Washing Machine Status
+options:
+  - Idle
+  - Running
+  - Finishing
+  - Clean
+initial: Idle
