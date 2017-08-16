@@ -126,6 +126,8 @@ notify: !include_dir_list conf.d/notifications/
 sensor: !include_dir_list conf.d/sensors/
 binary_sensor: !include_dir_list conf.d/binary_sensors/
 alert: !include_dir_named conf.d/alerts/
+input_select: !include_dir_named conf.d/input_select/
+
 
 alexa: !include conf.d/alexa.yaml
 switch: !include_dir_list conf.d/switches/
