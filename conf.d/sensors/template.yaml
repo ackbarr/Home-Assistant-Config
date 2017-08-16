@@ -52,4 +52,4 @@ sensors:
     value_template: '{{ states.switch.washing_machine.attributes.Current|replace(" A", "") }}'
     friendly_name: 'Washing Machine Current Amps'
     unit_of_measurement: Amps
-    icon: mdi:power-socket-us
+    
