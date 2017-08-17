@@ -1,0 +1,7 @@
+bitcoin:
+  name: Bitcoin
+  entities:
+  - sensor.exchange_rate_1_btc
+  - sensor.trade_volume
+  - sensor.btc_exchange_rate_mean
+  view: false
