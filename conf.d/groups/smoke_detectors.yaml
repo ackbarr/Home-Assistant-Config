@@ -1,0 +1,16 @@
+smoke_detectors:
+  name: Smoke Detectors
+  icon: mdi:home-variant
+  view: true
+  entities:
+  - group.smoke_detector_mainfloor
+  
+
+smoke_detector_mainfloor:
+  name: Main Floor
+  icon: mdi:alarm
+  view: false
+  entities:
+  - binary_sensor.downstairs_nest_protect_online
+  - sensor.downstairs_nest_protect_co_status
+  - sensor.downstairs_nest_protect_smoke_status
