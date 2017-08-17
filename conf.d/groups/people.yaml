@@ -7,6 +7,14 @@ people:
   - group.shanon
   - group.dylan
 
+parents:
+  name: Parents
+  icon: mdi:account-multiple
+  view: true
+  entities:
+  - group.brian
+  - group.shanon
+
 shanon:
   entities:
   - device_tracker.shanon_lgphone
@@ -25,3 +33,4 @@ dylan:
   - device_tracker.android4a4e3a7fdff884ea
   name: Dylan
   view: false
+
