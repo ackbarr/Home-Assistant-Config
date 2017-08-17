@@ -36,6 +36,10 @@
     - platform: state
       entity_id: sensor.dark_sky_precip
       to: 'rain'
+  condition:
+    - condition: state
+      entity_id: group.driveway_lights
+      state: off
   action:
     - service: light.turn_on
       entity_id: group.driveway_lights
