@@ -1,5 +1,6 @@
 Network:
   entities:
+  - binary_sensor.device_critical
   - sensor.media02_online
   - sensor.media03_online
   - sensor.nextpvr_online

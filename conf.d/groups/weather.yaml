@@ -12,5 +12,17 @@ darksky:
   - sensor.dark_sky_pressure
   - sensor.dark_sky_visibility
   - sensor.dark_sky_precip_intensity_max
+  - sensor.dark_sky_daily_max_precip_intensity
   name: Darksky
   view: false
+
+environment:
+  entities:
+  - sun.sun
+  - sensor.moon
+  - sensor.date
+  - sensor.time
+  - sensor.date__time
+  - sensor.internet_time
+  - sensor.time__date
+  - sensor.time_tuc
