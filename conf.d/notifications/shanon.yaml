@@ -1,0 +1,6 @@
+name: shanon
+platform: group
+services: 
+- service: twilio
+  data:
+    target: !secret shanon_contact_phone

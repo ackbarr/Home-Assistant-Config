@@ -1,0 +1,5 @@
+name: brian
+platform: group
+services: 
+- service: brian
+- service: shanon
