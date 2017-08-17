@@ -1,3 +1,3 @@
 name: twilio
 platform: twilio_sms
-from_number: +16362381838
+from_number: !secret twilio_source_phone
