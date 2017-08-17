@@ -6,11 +6,12 @@ people:
   - group.brian
   - group.shanon
   - group.dylan
+  - group.parents
 
 parents:
   name: Parents
   icon: mdi:account-multiple
-  view: true
+  view: false
   entities:
   - group.brian
   - group.shanon

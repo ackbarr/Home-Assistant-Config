@@ -7,6 +7,7 @@ Network:
 sabnzb:
   entities:
   - sensor.sab_status
+  - sensor.sabnzbd_status
   - sensor.sab_speed
   - sensor.sab_disk_free
   - sensor.sab_queue
