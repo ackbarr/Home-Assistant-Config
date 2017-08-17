@@ -1,0 +1,167 @@
+# Original source: https://philhawthorne.com/making-dumb-dishwashers-and-washing-machines-smart-alerts-when-the-dishes-and-clothes-are-cleaned/
+
+# When power is detected, and the washing machine is not in 
+# the Running state, change the status of the washing machine
+# to Running. 
+# The status check will ensure we don't try to put the state 
+# to Running each time the power level changes, and we're already
+# in the Running state.
+
+- id: washing_machine_running
+  alias: Set washing machine active when power detected
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.washing_machine_switch_current_amps
+      above: 4
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Idle
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Clean
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Finishing
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Running
+
+# When the power drops, move the state of the washing machine to 
+# Finishing.
+
+- id: washing_machine_finishing
+  alias: Set washing machine finished when power drops
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.washing_machine_switch_current_amps
+      below: 0.5
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_select.washing_machine_status
+        state: Running
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Finishing
+
+# Wait 8 minutes for us to be in the Finishing state before we
+# decide the washing machine has finished. This way, if the 
+# washing machine is in between cycles and the power drops, we 
+# won't mark the washing machine cycle as finished too early.
+
+- id: washing_machine_clean
+  alias: Set washing machine clean after timeout
+  trigger:
+    - platform: state
+      entity_id: input_select.washing_machine_status
+      to: Finishing
+      for:
+        minutes: 8
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_select.washing_machine_status
+        state: Finishing
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Idle
+        #TODO: Change this after adding the door sensor to home network
+        #option: Clean
+
+#TODO: This will not work until the door sensor is added        
+# When we open the washing machine door, reset the status back to
+# idle, so we don't spam people that the washing machine has 
+# finished, and someone has already emptied it
+- id: washing_machine_idle
+  alias: Set washing machine dirty when door opens
+  trigger:
+    # I've setup a template sensor to change make the binary_sensor report open and closed
+    # instead of 1 and 0
+    - platform: state
+      entity_id: input_select.washingmachine_door_status
+      to: 'Open'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_select.washing_machine_status
+        state: Clean
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Idle
+
+# Notifications
+# Rules
+# 1. Don’t send an alert if it is after 10:30pm, or before 7:00am.
+# 2. Don’t send an alert unless someone is home. No point alerting us if no one is home to unpack the washing machine.
+# 3. If the washing machine is clean, and the time ticks past 8:30am, and people are home, alert them the washing machine is ready.
+# 4. Only send an alert to the people who are home. Don’t bother anyone who isn’t at home.
+# 5. If the washing machine is clean, and someone arrives home, send everyone who is home an alert, but only if the alert wasn’t sent in the last thirty minutes.
+- id: washing_machine_alert_finished
+  alias: Send alert when washing machine is finished
+  trigger:
+    - platform: state
+      entity_id: sensor.washing_machine_status
+      to: Idle
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: group.shanon
+      to: 'home'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: group.brian
+      to: 'home'
+      for:
+        minutes: 5
+    - platform: time
+      after: '07:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        before: '22:30:00'
+        after: '07:00:00'
+      - condition: state
+        entity_id: group.parents
+        state: 'home'
+      - condition: state
+        entity_id: input_select.washing_machine_status
+        state: Idle
+      - condition: template
+        value_template: >
+          {% if states.automation.washing_machine_alert_finished.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.washing_machine_alert_finished.attributes.last_triggered) | int > 1800 %} 
+            true
+            {% else %}
+            false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+  action:
+    - service_template: >
+        {% if (is_state('group.brian', 'home')) and (is_state('group.shanon', 'home'))  %}
+          notify.brian_and_shanon
+        {% elif is_state('group.brian', 'home') %}
+          notify.brian
+        {% elif is_state('group.shanon', 'home') %}
+          notify.shanon
+        {% endif %}
+      data:
+        message: 'Hey, the washing machine has finished and is ready to be emptied'
+        title: 'Washing Machine'
