@@ -7,7 +7,6 @@ Network:
   - sensor.lightbridge_online
 sabnzb:
   entities:
-  - sensor.sab_status
   - sensor.sabnzbd_status
   - sensor.sab_speed
   - sensor.sab_disk_free
