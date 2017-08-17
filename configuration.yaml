@@ -61,6 +61,10 @@ mqtt:
   password: !secret mqtt_pass
   certificate: auto
 
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_auth_token
+
 emulated_hue:
   type: alexa
 
