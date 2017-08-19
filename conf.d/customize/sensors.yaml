@@ -12,3 +12,5 @@ sensor.lightbridge_online:
   icon: mdi:lightbulb
 sensor.washing_machine_switch_current_amps:
   icon: mdi:power-socket-us
+sensor.washing_machine_status:
+  icon: mdi:washing-machine
