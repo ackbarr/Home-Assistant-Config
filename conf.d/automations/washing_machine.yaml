@@ -12,7 +12,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.washing_machine_switch_current_amps
-      above: 4
+      above: 2.5
   condition:
     condition: or
     conditions:
