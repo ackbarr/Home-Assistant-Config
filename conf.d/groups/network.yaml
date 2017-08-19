@@ -8,10 +8,10 @@ Network:
 sabnzb:
   entities:
   - sensor.sabnzbd_status
-  - sensor.sab_speed
-  - sensor.sab_disk_free
-  - sensor.sab_queue
-  - sensor.sab_left
+  - sensor.sabnzbd_speed
+  - sensor.sabnzbd_disk_free
+  - sensor.sabnzbd_queue
+  - sensor.sabnzbd_left
   - sensor.sonarr_upcoming
   name: SabNZB+
   view: false
