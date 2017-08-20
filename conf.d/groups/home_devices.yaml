@@ -8,7 +8,8 @@ home_devices:
   - group.network
   - group.sabnzb
   - group.environment
-  - sensor.washing_mashine_status
+  - climate.main_floor
+  - sensor.washing_machine_status
   - sensor.washing_machine_switch_current_amps
   - sensor.main_floor_temperature
   - sensor.upstairs_temperature
@@ -24,7 +25,7 @@ mainfloor:
   - sensor.downstairs_nest_protect_co_status
   - sensor.downstairs_nest_protect_smoke_status
   - binary_sensor.main_floor_occupancy
-  - climate.main_floor
+  
   - sensor.main_floor_humidity
   - sensor.main_floor_temperature
   - sensor.main_floor_temp_mean
