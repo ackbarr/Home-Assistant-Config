@@ -1,0 +1,25 @@
+home_devices:
+  name: Home
+  icon: mdi:home-variant
+  view: true
+  entities:
+  - group.smoke_detector_mainfloor
+  - group.network
+  - group.sabnzbd
+  - group.environment
+  - sensor.washing_mashine_status
+  - sensor.main_floor_temperature
+
+mainfloor:
+  name: Main Floor
+  icon: mdi:alarm
+  view: false
+  entities:
+  - binary_sensor.downstairs_nest_protect_online
+  - sensor.downstairs_nest_protect_co_status
+  - sensor.downstairs_nest_protect_smoke_status
+  - binary_sensor.main_floor_occupancy
+  - climate.main_floor
+  - sensor.main_floor_humidity
+  - sensor.main_floor_temperature
+  - sensor.main_floor_temperature_mean

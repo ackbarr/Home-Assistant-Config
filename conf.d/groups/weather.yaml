@@ -3,6 +3,7 @@ darksky:
   - sensor.dark_sky_summary
   - sensor.dark_sky_icon
   - sensor.dark_sky_nearest_storm_distance
+  - sensor.dark_sky_precip
   - sensor.dark_sky_precip_type
   - sensor.dark_sky_precip_intensity
   - sensor.dark_sky_precip_probability
@@ -17,12 +18,14 @@ darksky:
   view: false
 
 environment:
+  name: Environment
+  view: false
   entities:
   - sun.sun
   - sensor.moon
   - sensor.date
   - sensor.time
   - sensor.date__time
-  - sensor.internet_time
   - sensor.time__date
-  - sensor.time_tuc
+  - sensor.internet_time
+  - sensor.time_utc
