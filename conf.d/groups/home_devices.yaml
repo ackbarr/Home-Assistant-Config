@@ -4,6 +4,7 @@ home_devices:
   view: true
   entities:
   - group.mainfloor
+  - group.loft
   - group.network
   - group.sabnzb
   - group.environment
